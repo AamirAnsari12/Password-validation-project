@@ -1,0 +1,70 @@
+
+// Implement Email Class according to the specifiaction.
+Header header;
+String body;
+String greetings;
+Email(Header header,String body,String greetings){
+	this.header=header;
+	this.body=body;
+	this.greetings=greetings;
+}
+}
+class Header{
+// Implemet the Header Class according to the specifiaction.
+String from;
+String to;
+Header(String from,String to){
+	this.from=from;
+	this.to=to;
+}
+}
+
+
+class EmailOperations{
+// Implemet the Three methods specified in the specified.	
+public int emailVerify(Email e){
+	String s1=e.header.from;
+	String s2=e.header.to;
+	int i=0;
+	if(s1.matches("[a-zA-Z]*[@]{1}[a-z]*[/.][a-z]*")&& s2.matches("[a-zA-Z]*[@]{1}[a-z]*[/.][a-z]*"))
+	i=2;
+	else if (s1.matches("[a-zA-Z]*[@]{1}[a-z]*[/.][a-z]*")|| s2.matches("[a-zA-Z]*[@]{1}[a-z]*[/.][a-z]*"))
+	i=1;
+	return i;
+}
+public String bodyEncryption(Email e){
+	String s=e.body;
+	String s1="";
+	for(int i=0;i<s.length();i++)
+	{
+      if(s.charAt(i)==' ')
+	  s1+=" ";
+
+	  else{
+		  int k=s.charAt(i);
+		  if((k>=88&&k<=90) || (k>=120&&k<=122))
+		  k-=26;
+		  k+=3;
+		  s1+=(char)k;
+	  }
+	}
+	return s1;
+}
+public String greetingMessage(Email e)
+{
+	String s1=e.greetings;
+	String s2=e.header.from;
+	int k=s2.indexOf("@");
+	String s3=s2.substring(0,k);
+
+	return s1+" "+s3;
+}
+}
+
+
+public class Source {
+	public static void main(String args[] ) throws Exception {
+		/* Enter your code here. Read input from STDIN. Print output to STDOUT */
+    // You can Implement your main() to check your Program.
+}
+}
